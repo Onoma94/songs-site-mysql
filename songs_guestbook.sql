@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `sys` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `sys`;
+CREATE DATABASE  IF NOT EXISTS `songs` /*!40100 DEFAULT CHARACTER SET utf8 */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `songs`;
 -- MySQL dump 10.13  Distrib 8.0.22, for Win64 (x86_64)
 --
--- Host: localhost    Database: sys
+-- Host: localhost    Database: songs
 -- ------------------------------------------------------
 -- Server version	8.0.22
 
@@ -18,29 +18,31 @@ USE `sys`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `sys_config`
+-- Table structure for table `guestbook`
 --
 
-DROP TABLE IF EXISTS `sys_config`;
+DROP TABLE IF EXISTS `guestbook`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sys_config` (
-  `variable` varchar(128) NOT NULL,
-  `value` varchar(128) DEFAULT NULL,
-  `set_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `set_by` varchar(128) DEFAULT NULL,
-  PRIMARY KEY (`variable`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `guestbook` (
+  `PostID` int NOT NULL AUTO_INCREMENT,
+  `PostContent` varchar(256) NOT NULL,
+  `PostAuthor` varchar(64) NOT NULL,
+  `PostDate` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`PostID`),
+  UNIQUE KEY `PostID_UNIQUE` (`PostID`),
+  UNIQUE KEY `PostDate_UNIQUE` (`PostDate`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `sys_config`
+-- Dumping data for table `guestbook`
 --
 
-LOCK TABLES `sys_config` WRITE;
-/*!40000 ALTER TABLE `sys_config` DISABLE KEYS */;
-INSERT INTO `sys_config` VALUES ('diagnostics.allow_i_s_tables','OFF','2020-11-04 17:44:12',NULL),('diagnostics.include_raw','OFF','2020-11-04 17:44:12',NULL),('ps_thread_trx_info.max_length','65535','2020-11-04 17:44:12',NULL),('statement_performance_analyzer.limit','100','2020-11-04 17:44:12',NULL),('statement_performance_analyzer.view',NULL,'2020-11-04 17:44:12',NULL),('statement_truncate_len','64','2020-11-04 17:44:12',NULL);
-/*!40000 ALTER TABLE `sys_config` ENABLE KEYS */;
+LOCK TABLES `guestbook` WRITE;
+/*!40000 ALTER TABLE `guestbook` DISABLE KEYS */;
+INSERT INTO `guestbook` VALUES (1,'figurki som wajne mam sześć','chomik','2022-02-09 23:00:00'),(2,'','','2022-02-18 22:49:34'),(3,'','','2022-02-18 22:52:49'),(4,'','','2022-02-18 22:53:10'),(5,'testowa wiadomość 1','testowa jednostka 1','2022-02-19 02:35:14');
+/*!40000 ALTER TABLE `guestbook` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -52,4 +54,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-02-19  4:55:29
+-- Dump completed on 2022-02-19  4:55:32
